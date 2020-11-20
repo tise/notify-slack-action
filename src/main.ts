@@ -20,15 +20,19 @@ async function run(): Promise<void> {
             ? [
                   `<${runUrl}|${subject}>`,
                   `${event}`,
-                  `on`,
-                  `\`<${commitUrl}|${process.env.GITHUB_REF}>\``,
+                  ...(core.getInput('include_ref') === 'true'
+                      ? [`on`, `\`<${commitUrl}|${process.env.GITHUB_REF}>\``]
+                      : []),
                   ...(mention ? [`<!${mention}>`] : [])
               ].join(' ')
             : core.getInput('title')
     const message = core.getInput('message')
     const footer = core.getInput('footer')
 
-    const text = title ? `*${title}*\n${message}` : message
+    const text = [
+        ...(title ? [`*${title}*`] : []),
+        ...(message ? [message] : [])
+    ].join('\n')
 
     await webhook.send({
         username: core.getInput('username'),

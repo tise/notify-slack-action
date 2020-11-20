@@ -14,6 +14,10 @@ inputs:
     subject:
         required: false
         description: 'Thing that something happened to (will link to run)'
+    include_ref:
+        required: false
+        description: 'Include ref in title'
+        default: true
     mention:
         required: false
         description: 'Mention a group (e.g. here)'
