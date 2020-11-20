@@ -31,14 +31,14 @@ async function run(): Promise<void> {
     const text = title ? `*${title}*\n${message}` : message
 
     await webhook.send({
-        username: core.getInput('username') || 'GitHub',
+        username: core.getInput('username'),
         icon_emoji: core.getInput('icon_emoji') || undefined,
         channel: core.getInput('channel') || undefined,
         unfurl_links: false,
         attachments: [
             {
                 // fallback: '', TODO
-                color: core.getInput('color') || 'good',
+                color: core.getInput('color'),
                 author_name: actor,
                 author_link: `${process.env.GITHUB_SERVER_URL}/${actor}`,
                 author_icon: `${process.env.GITHUB_SERVER_URL}/${actor}.png?size=32`,

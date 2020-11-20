@@ -35,12 +35,12 @@ inputs:
         description: 'Channel to send to'
     color:
         required: false
-        description: 'Status color to usi'
+        description: 'Status color to use'
         default: 'good'
     footer:
         required: false
-        description: 'Footer to include'
-        default: 'Repo name'
+        description: "Footer to include. Defaults to the repo's name"
+
 runs:
     using: 'node12'
     main: 'dist/index.js'

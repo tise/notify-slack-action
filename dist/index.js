@@ -69,14 +69,14 @@ function run() {
         const footer = core.getInput('footer');
         const text = title ? `*${title}*\n${message}` : message;
         yield webhook.send({
-            username: core.getInput('username') || 'GitHub',
+            username: core.getInput('username'),
             icon_emoji: core.getInput('icon_emoji') || undefined,
             channel: core.getInput('channel') || undefined,
             unfurl_links: false,
             attachments: [
                 {
                     // fallback: '', TODO
-                    color: core.getInput('color') || 'good',
+                    color: core.getInput('color'),
                     author_name: actor,
                     author_link: `${process.env.GITHUB_SERVER_URL}/${actor}`,
                     author_icon: `${process.env.GITHUB_SERVER_URL}/${actor}.png?size=32`,
