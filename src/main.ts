@@ -47,7 +47,7 @@ async function run(): Promise<void> {
                 author_link: `${process.env.GITHUB_SERVER_URL}/${actor}`,
                 author_icon: `${process.env.GITHUB_SERVER_URL}/${actor}.png?size=32`,
                 footer:
-                    footer || `<${repoUrl}:${process.env.GITHUB_REPOSITORY}>`,
+                    footer || `<${repoUrl}|${process.env.GITHUB_REPOSITORY}>`,
                 footer_icon: footer
                     ? undefined
                     : 'https://github.githubassets.com/favicon.ico',
