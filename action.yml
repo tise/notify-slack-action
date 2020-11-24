@@ -27,7 +27,7 @@ inputs:
     message:
         required: false
         description: 'Message body'
-    iconEmoji:
+    icon_emoji:
         required: false
         description: 'Emoji to use as sender avatar'
     username:
