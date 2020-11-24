@@ -15,13 +15,15 @@ async function run(): Promise<void> {
     const runUrl = `${repoUrl}/actions/runs/${process.env.GITHUB_RUN_ID}`
     const commitUrl = `${repoUrl}/commit/${process.env.GITHUB_SHA}`
 
+    const ref = process.env.GITHUB_REF?.replace('refs/heads/', '')
+
     const title =
         subject && event
             ? [
                   `<${runUrl}|${subject}>`,
                   `${event}`,
                   ...(core.getInput('include_ref') === 'true'
-                      ? [`on`, `\`<${commitUrl}|${process.env.GITHUB_REF}>\``]
+                      ? [`on`, `\`<${commitUrl}|${ref}>\``]
                       : []),
                   ...(mention ? [`<!${mention}>`] : [])
               ].join(' ')

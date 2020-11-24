@@ -47,6 +47,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(2186));
 const webhook_1 = __webpack_require__(1095);
 function run() {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const webhook = new webhook_1.IncomingWebhook(core.getInput('webhook', { required: true }));
         const actor = core.getInput('actor') || process.env.GITHUB_ACTOR;
@@ -56,12 +57,13 @@ function run() {
         const repoUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}`;
         const runUrl = `${repoUrl}/actions/runs/${process.env.GITHUB_RUN_ID}`;
         const commitUrl = `${repoUrl}/commit/${process.env.GITHUB_SHA}`;
+        const ref = (_a = process.env.GITHUB_REF) === null || _a === void 0 ? void 0 : _a.replace('refs/heads/', '');
         const title = subject && event
             ? [
                 `<${runUrl}|${subject}>`,
                 `${event}`,
                 ...(core.getInput('include_ref') === 'true'
-                    ? [`on`, `\`<${commitUrl}|${process.env.GITHUB_REF}>\``]
+                    ? [`on`, `\`<${commitUrl}|${ref}>\``]
                     : []),
                 ...(mention ? [`<!${mention}>`] : [])
             ].join(' ')
@@ -84,7 +86,7 @@ function run() {
                     author_name: actor,
                     author_link: `${process.env.GITHUB_SERVER_URL}/${actor}`,
                     author_icon: `${process.env.GITHUB_SERVER_URL}/${actor}.png?size=32`,
-                    footer: footer || `<${repoUrl}:${process.env.GITHUB_REPOSITORY}>`,
+                    footer: footer || `<${repoUrl}|${process.env.GITHUB_REPOSITORY}>`,
                     footer_icon: footer
                         ? undefined
                         : 'https://github.githubassets.com/favicon.ico',
