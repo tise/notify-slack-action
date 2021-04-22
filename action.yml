@@ -1,10 +1,10 @@
 name: 'notify-slack-action'
 description: 'Send a message to Slack'
-author: 'TIse'
+author: 'Tise'
 inputs:
-    webhook:
+    token:
         required: true
-        description: 'Slack webhook to use'
+        description: 'Slack token to use'
     actor:
         required: false
         description: 'Github user that triggered action'
@@ -35,7 +35,7 @@ inputs:
         description: 'User to user as sender'
         default: 'GitHub'
     channel:
-        required: false
+        required: true
         description: 'Channel to send to'
     color:
         required: false

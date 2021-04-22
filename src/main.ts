@@ -1,10 +1,8 @@
-import * as core from '@actions/core'
-import {IncomingWebhook} from '@slack/webhook'
+import * as core from '@actions/core';
+import { WebClient } from '@slack/web-api';
 
 async function run(): Promise<void> {
-    const webhook = new IncomingWebhook(
-        core.getInput('webhook', {required: true})
-    )
+    const client = new WebClient(core.getInput('token', { required: true }));
     const actor = core.getInput('actor') || process.env.GITHUB_ACTOR
 
     const subject = core.getInput('subject')
@@ -36,11 +34,13 @@ async function run(): Promise<void> {
         ...(message ? [message] : [])
     ].join('\n')
 
-    await webhook.send({
+    await client.chat.postMessage({
         username: core.getInput('username'),
         icon_emoji: core.getInput('icon_emoji') || undefined,
-        channel: core.getInput('channel') || undefined,
+        channel: core.getInput('channel'),
+        as_user: false,
         unfurl_links: false,
+        text: '',
         attachments: [
             {
                 // fallback: '', TODO
