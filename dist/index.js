@@ -77,7 +77,6 @@ function run() {
             username: core.getInput('username'),
             icon_emoji: core.getInput('icon_emoji') || undefined,
             channel: core.getInput('channel'),
-            as_user: false,
             unfurl_links: false,
             text: '',
             attachments: [
@@ -1078,6 +1077,7 @@ function warnDeprecations(method, logger) {
     }
 }
 //# sourceMappingURL=WebClient.js.map
+
 
 /***/ }),
 

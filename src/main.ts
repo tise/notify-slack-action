@@ -38,7 +38,6 @@ async function run(): Promise<void> {
         username: core.getInput('username'),
         icon_emoji: core.getInput('icon_emoji') || undefined,
         channel: core.getInput('channel'),
-        as_user: false,
         unfurl_links: false,
         text: '',
         attachments: [
