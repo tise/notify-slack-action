@@ -77,7 +77,7 @@ function run() {
             username: core.getInput('username'),
             icon_emoji: core.getInput('icon_emoji') || undefined,
             channel: core.getInput('channel'),
-            unfurl_links: false,
+            unfurl_linkss: false,
             text: '',
             attachments: [
                 {
@@ -105,10 +105,10 @@ function run() {
 ;
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        run();
+        yield run();
     }
     catch (error) {
-        core.setFailed(error.message);
+        core.setFailed(JSON.stringify(error));
     }
 }))();
 

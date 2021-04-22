@@ -38,7 +38,7 @@ async function run(): Promise<void> {
         username: core.getInput('username'),
         icon_emoji: core.getInput('icon_emoji') || undefined,
         channel: core.getInput('channel'),
-        unfurl_links: false,
+        unfurl_linkss: false,
         text: '',
         attachments: [
             {
@@ -66,8 +66,8 @@ async function run(): Promise<void> {
 
 ;(async () => {
     try {
-        run()
+        await run()
     } catch (error) {
-        core.setFailed(error.message)
+        core.setFailed(JSON.stringify(error))
     }
 })()
