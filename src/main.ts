@@ -1,8 +1,8 @@
-import * as core from '@actions/core';
-import { WebClient } from '@slack/web-api';
+import * as core from '@actions/core'
+import {WebClient} from '@slack/web-api'
 
 async function run(): Promise<void> {
-    const client = new WebClient(core.getInput('token', { required: true }));
+    const client = new WebClient(core.getInput('token', {required: true}))
     const actor = core.getInput('actor') || process.env.GITHUB_ACTOR
 
     const subject = core.getInput('subject')

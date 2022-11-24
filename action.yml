@@ -46,5 +46,5 @@ inputs:
         description: "Footer to include. Defaults to the repo's name"
 
 runs:
-    using: 'node12'
+    using: 'node16'
     main: 'dist/index.js'
