@@ -49,6 +49,7 @@ function run() {
         const subject = core.getInput('subject');
         const event = core.getInput('event');
         const mention = core.getInput('mention');
+        const threaded_message = core.getInput('threaded_message');
         const repoUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}`;
         const runUrl = `${repoUrl}/actions/runs/${process.env.GITHUB_RUN_ID}`;
         const commitUrl = `${repoUrl}/commit/${process.env.GITHUB_SHA}`;
@@ -69,7 +70,7 @@ function run() {
             ...(title ? [`*${title}*`] : []),
             ...(message ? [message] : [])
         ].join('\n');
-        yield client.chat.postMessage({
+        const response = yield client.chat.postMessage({
             username: core.getInput('username'),
             icon_emoji: core.getInput('icon_emoji') || undefined,
             channel: core.getInput('channel'),
@@ -96,6 +97,13 @@ function run() {
                 }
             ]
         });
+        if (threaded_message && response.ts) {
+            yield client.chat.postMessage({
+                channel: core.getInput('channel'),
+                text: threaded_message,
+                thread_ts: response.ts
+            });
+        }
     });
 }
 ;

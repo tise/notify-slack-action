@@ -18,6 +18,9 @@ inputs:
         required: false
         description: 'Include ref in title'
         default: true
+    threaded_message:
+        required: false
+        description: 'Message to send in a threaded message'
     mention:
         required: false
         description: 'Mention a group (e.g. here)'
