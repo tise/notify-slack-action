@@ -9,7 +9,6 @@ async function run(): Promise<void> {
     const event = core.getInput('event')
     const mention = core.getInput('mention')
     const threaded_message = core.getInput('threaded_message')
-    const text = core.getInput('text')
 
     const repoUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}`
     const runUrl = `${repoUrl}/actions/runs/${process.env.GITHUB_RUN_ID}`
@@ -35,6 +34,8 @@ async function run(): Promise<void> {
         ...(title ? [`*${title}*`] : []),
         ...(message ? [message] : [])
     ].join('\n')
+
+    const inputText = core.getInput('text')
 
     const response = await client.chat.postMessage({
         username: core.getInput('username'),
