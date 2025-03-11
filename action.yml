@@ -47,6 +47,9 @@ inputs:
     footer:
         required: false
         description: "Footer to include. Defaults to the repo's name"
+    text:
+        required: false
+        description: 'Text to send'
 
 runs:
     using: 'node20'
