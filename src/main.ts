@@ -35,8 +35,7 @@ async function run(): Promise<void> {
         ...(message ? [message] : [])
     ].join('\n')
 
-    const inputText = core.getInput('text')
-
+    const inputText = core.getInput('plain_text_message')
     const response = await client.chat.postMessage({
         username: core.getInput('username'),
         icon_emoji: core.getInput('icon_emoji') || undefined,

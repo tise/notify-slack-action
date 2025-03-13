@@ -47,9 +47,9 @@ inputs:
     footer:
         required: false
         description: "Footer to include. Defaults to the repo's name"
-    text:
+    plain_text_message:
         required: false
-        description: 'Text to send'
+        description: 'Plain text message to send instead of a formatted message with attachments. If provided, title, message, and footer will be ignored.'
 
 runs:
     using: 'node20'
